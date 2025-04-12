@@ -1,19 +1,31 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\articleController;
-
+use App\Http\Controllers\ExtraController;
+use App\Http\Controllers\FormController;
 Route::get('/', function () {
     return view('welcome');
 });
+use Illuminate\Support\Facades\Route;
+
+Route::get('/form', function () {
+    return view('form');
+})->name('form.get');
+
 // Route::get('/hello', function () {
 //     return " welcome to laravel Nahid";
 // });
 
-Route::get('/hello', [WelcomeController::class, 'sayHello']);
-Route::get('/course', [WelcomeController::class, 'courseName']);
-Route::get('/dashboard', [DashboardController::class, 'dashboard']);
-Route::get('/article/{id}', [articleController::class, 'index']);
-Route::get('/article/page/{pageNumber}/display/{type}', [articleController::class, 'showArticle']);
+// Route::get('/hello', [WelcomeController::class, 'sayHello']);
+// Route::post('/course', [WelcomeController::class, 'courseName']);
+// Route::get('/dashboard', [DashboardController::class, 'dashboard']);
+// Route::get('/article/{id}', [articleController::class, 'index']);
+// Route::get('/article/page/{pageNumber}/display/{type}', [articleController::class, 'showArticle']);
+
+route::view("/login", "forms.login");
+route::view("/form", "forms.form");
+route::view("/contract", "forms.contractForm");
+route::view("/mainPage", "forms.mainPage");
+
+route::post("/handleform", [FormController::class, 'handleFormSubmission'])->name('handle.post');
+
+Route::post('/form', [ExtraController::class, 'checkValidation'])->name('form.post');

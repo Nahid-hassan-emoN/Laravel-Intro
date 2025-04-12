@@ -7,7 +7,11 @@ use Illuminate\Http\Request;
 class WelcomeController extends Controller
 {
    function sayHello(){
-       return "welcome to laravel Nahid_123";
+       return response()->json([
+              'name' => 'Nahid',
+              'age' => 25,
+              'course' => 'Laravel'
+       ]);
    }
 
    function courseName(){

@@ -2,15 +2,20 @@
 
 use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\FormController;
+use App\Http\Middleware\secretMiddleWare;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
-use Illuminate\Support\Facades\Route;
 
 Route::get('/form', function () {
     return view('form');
 })->name('form.get');
 
+Route::get("/secret", function () {
+    return 'secret Message';
+})->middleware(secretMiddleWare::class);
 // Route::get('/hello', function () {
 //     return " welcome to laravel Nahid";
 // });
